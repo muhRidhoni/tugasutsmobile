@@ -27,13 +27,13 @@ class HalamanUtamaKalkulator extends StatefulWidget {
 }
 
 class _StateHalamanUtamaKalkulator extends State<HalamanUtamaKalkulator> {
-  String _hasilTampilan = "0"; // Output yang ditampilkan di layar kalkulator
-  String _angkaSaatIni = ""; // Angka yang sedang diketik pengguna
-  double _angkaPertama = 0.0; // Angka pertama dalam operasi
-  double _angkaKedua = 0.0; // Angka kedua dalam operasi
-  String _operatorAktif = ""; // Operator yang dipilih (+, -, x, /)
-  bool _bersihkanTampilan = false; // Penanda apakah tampilan harus dibersihkan untuk angka baru
-  String _tampilanOperator = ""; // Operator yang ditampilkan di layar
+  String _hasilTampilan = "0"; 
+  String _angkaSaatIni = ""; 
+  double _angkaPertama = 0.0; 
+  double _angkaKedua = 0.0; 
+  String _operatorAktif = ""; 
+  bool _bersihkanTampilan = false; 
+  String _tampilanOperator = ""; 
 
   void tombolDitekan(String teksTombol) {
     if (teksTombol == "CLEAR") {
@@ -43,7 +43,7 @@ class _StateHalamanUtamaKalkulator extends State<HalamanUtamaKalkulator> {
       _angkaKedua = 0.0;
       _operatorAktif = "";
       _bersihkanTampilan = false;
-      _tampilanOperator = ""; // Reset tampilan operator
+      _tampilanOperator = ""; 
     } else if (teksTombol == "+" ||
         teksTombol == "-" ||
         teksTombol == "x" ||
@@ -54,10 +54,10 @@ class _StateHalamanUtamaKalkulator extends State<HalamanUtamaKalkulator> {
       _operatorAktif = teksTombol;
       _angkaSaatIni = "";
       _bersihkanTampilan = true;
-      _tampilanOperator = teksTombol; // Set tampilan operator
+      _tampilanOperator = teksTombol; 
     } else if (teksTombol == ".") {
       if (_angkaSaatIni.contains(".")) {
-        return; // Jangan tambahkan titik jika sudah ada
+        return; 
       }
       _angkaSaatIni = _angkaSaatIni + teksTombol;
     } else if (teksTombol == "=") {
@@ -78,16 +78,16 @@ class _StateHalamanUtamaKalkulator extends State<HalamanUtamaKalkulator> {
         if (_angkaKedua != 0) {
           _hasilTampilan = (_angkaPertama / _angkaKedua).toString();
         } else {
-          _hasilTampilan = "Error"; // Pembagian dengan nol
+          _hasilTampilan = "Error"; 
         }
       }
 
       _angkaPertama = 0.0;
       _angkaKedua = 0.0;
       _operatorAktif = "";
-      _angkaSaatIni = _hasilTampilan; // Hasil menjadi angka pertama untuk perhitungan selanjutnya
+      _angkaSaatIni = _hasilTampilan; 
       _bersihkanTampilan = true;
-      _tampilanOperator = ""; // Reset tampilan operator setelah perhitungan
+      _tampilanOperator = ""; 
     } else {
       if (_bersihkanTampilan) {
         _angkaSaatIni = "";
@@ -95,12 +95,12 @@ class _StateHalamanUtamaKalkulator extends State<HalamanUtamaKalkulator> {
       }
       _angkaSaatIni = _angkaSaatIni + teksTombol;
       _hasilTampilan = _angkaSaatIni;
-      _tampilanOperator = ""; // Hapus tampilan operator saat angka baru ditekan
+      _tampilanOperator = ""; 
     }
 
     setState(() {
       if (_hasilTampilan.endsWith(".0")) {
-        _hasilTampilan = _hasilTampilan.substring(0, _hasilTampilan.length - 2); // Hapus .0 jika ada
+        _hasilTampilan = _hasilTampilan.substring(0, _hasilTampilan.length - 2); 
       }
     });
   }
